@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Terra Login</title>
+<title>MB Login</title>
 
 <style>
 
@@ -22,95 +22,148 @@ html,
 body {
     width: 100%;
     min-height: 100%;
-    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-    background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,.35), transparent 30%),
-        linear-gradient(135deg, #c9e8e2, #d9f0eb 50%, #b8ddd7);
+    font-family:
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    min-height: 100vh;
+
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     overflow-x: hidden;
+
     color: #333;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255,255,255,.55),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(255,255,255,.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #c7e4df 0%,
+            #dff0ec 50%,
+            #b8d9d4 100%
+        );
 }
 
 
 /* =========================================================
-   BACKGROUND ANIMATION
+   ANIMATED BACKGROUND
 ========================================================= */
 
 .background {
     position: fixed;
     inset: 0;
+
     overflow: hidden;
-    z-index: -1;
+
+    pointer-events: none;
+
+    z-index: 0;
 }
 
-.circle {
+.bg-circle {
     position: absolute;
+
     border-radius: 50%;
-    filter: blur(1px);
+
     opacity: .35;
-    animation: float 8s ease-in-out infinite;
+
+    filter: blur(2px);
+
+    animation:
+        floating 8s ease-in-out infinite;
 }
 
-.circle.one {
+.bg-circle:nth-child(1) {
     width: 180px;
     height: 180px;
+
     background: #ffffff;
-    top: 8%;
-    left: 8%;
+
+    top: 5%;
+    left: 5%;
 }
 
-.circle.two {
-    width: 250px;
-    height: 250px;
-    background: #f6a38b;
-    right: -70px;
-    top: 10%;
+.bg-circle:nth-child(2) {
+    width: 260px;
+    height: 260px;
+
+    background: #f19b80;
+
+    top: 5%;
+    right: -80px;
+
     animation-delay: 2s;
 }
 
-.circle.three {
-    width: 140px;
-    height: 140px;
+.bg-circle:nth-child(3) {
+    width: 150px;
+    height: 150px;
+
     background: #ffffff;
-    bottom: 10%;
-    left: -40px;
+
+    bottom: 5%;
+    left: -50px;
+
     animation-delay: 4s;
 }
 
-.circle.four {
-    width: 200px;
-    height: 200px;
-    background: #ef886f;
+.bg-circle:nth-child(4) {
+    width: 220px;
+    height: 220px;
+
+    background: #ed8569;
+
+    bottom: -90px;
     right: 10%;
-    bottom: -80px;
+
     animation-delay: 1s;
 }
 
-@keyframes float {
+@keyframes floating {
 
-    0%, 100% {
-        transform: translateY(0) translateX(0);
+    0%,
+    100% {
+        transform:
+            translate3d(0, 0, 0)
+            scale(1);
     }
 
     50% {
-        transform: translateY(-25px) translateX(15px);
+        transform:
+            translate3d(20px, -25px, 0)
+            scale(1.05);
     }
-
 }
 
 
 /* =========================================================
-   MAIN CONTAINER
+   MAIN
 ========================================================= */
 
 .login-wrapper {
+    position: relative;
+
+    z-index: 5;
+
     width: min(430px, 92vw);
-    padding: 20px;
+
+    padding: 18px;
 }
 
 
@@ -120,97 +173,157 @@ body {
 
 .login-card {
     position: relative;
-    overflow: hidden;
-    background: #f8f7ef;
-    border-radius: 38px;
-    min-height: 650px;
-    box-shadow:
-        0 30px 70px rgba(39, 79, 77, .25),
-        0 8px 25px rgba(0,0,0,.08);
 
-    animation: cardEnter .8s cubic-bezier(.2,.8,.2,1);
+    width: 100%;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
+    background: #f8f7ef;
+
+    border-radius: 38px;
+
+    box-shadow:
+        0 35px 80px rgba(45, 85, 82, .24),
+        0 10px 25px rgba(0,0,0,.08);
+
+    animation:
+        cardAppear
+        .8s
+        cubic-bezier(.2,.8,.2,1)
+        both;
 }
 
-@keyframes cardEnter {
+@keyframes cardAppear {
 
     from {
         opacity: 0;
-        transform: translateY(40px) scale(.95);
+        transform:
+            translateY(45px)
+            scale(.94);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform:
+            translateY(0)
+            scale(1);
     }
-
 }
 
 
 /* =========================================================
-   ORANGE HEADER
+   HEADER
 ========================================================= */
 
 .header {
-    height: 280px;
     position: relative;
+
+    height: 285px;
+
+    padding:
+        38px
+        36px;
+
     overflow: hidden;
-    padding: 42px 36px;
-    background: linear-gradient(
-        145deg,
-        #ed795b,
-        #e88365 50%,
-        #f09a7b
-    );
+
+    background:
+        linear-gradient(
+            145deg,
+            #ed785a 0%,
+            #e98264 50%,
+            #f19a7b 100%
+        );
 }
 
 
-/* wave putih */
+/* =========================================================
+   HEADER WAVE
+========================================================= */
 
 .header::after {
     content: "";
+
     position: absolute;
-    left: -15%;
-    bottom: -100px;
-    width: 130%;
+
+    left: -12%;
+
+    bottom: -105px;
+
+    width: 125%;
+
     height: 190px;
+
     background: #f8f7ef;
-    border-radius: 50% 50% 0 0 / 65% 65% 0 0;
+
+    border-radius:
+        50%
+        50%
+        0
+        0 /
+        65%
+        65%
+        0
+        0;
+
     transform: rotate(-2deg);
 }
 
 
 /* =========================================================
-   APP ICON
+   LOGO
 ========================================================= */
 
-.app-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: rgba(255,255,255,.22);
-    border: 1px solid rgba(255,255,255,.35);
+.logo-container {
+    position: relative;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    z-index: 5;
 
-    backdrop-filter: blur(8px);
+    width: 58px;
+    height: 58px;
 
-    color: white;
+    border-radius: 17px;
 
-    animation: iconFloat 3s ease-in-out infinite;
+    overflow: hidden;
+
+    background: rgba(255,255,255,.25);
+
+    border:
+        1px solid
+        rgba(255,255,255,.45);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.10);
+
+    backdrop-filter: blur(10px);
+
+    animation:
+        logoFloat
+        3.5s
+        ease-in-out
+        infinite;
 }
 
-@keyframes iconFloat {
+.logo-container img {
+    width: 100%;
+    height: 100%;
 
-    0%,100% {
+    object-fit: cover;
+
+    display: block;
+}
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-6px);
     }
-
 }
 
 
@@ -220,38 +333,76 @@ body {
 
 .title {
     position: relative;
-    z-index: 3;
-    margin-top: 25px;
+
+    z-index: 5;
+
+    margin-top: 23px;
+
     color: white;
+
+    animation:
+        titleAppear
+        .8s
+        .15s
+        both;
+}
+
+@keyframes titleAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .title h1 {
     font-size: 32px;
+
     font-weight: 700;
+
     letter-spacing: -.8px;
 }
 
 .title p {
     margin-top: 6px;
+
     font-size: 14px;
+
+    line-height: 1.5;
+
     opacity: .88;
 }
 
 
 /* =========================================================
-   FORM
+   FORM AREA
 ========================================================= */
 
 .form-area {
     position: relative;
-    z-index: 5;
-    padding: 0 36px 35px;
-    margin-top: -18px;
 
-    animation: formEnter 1s .2s both;
+    z-index: 10;
+
+    padding:
+        0
+        36px
+        35px;
+
+    margin-top: -10px;
+
+    animation:
+        formAppear
+        .9s
+        .25s
+        both;
 }
 
-@keyframes formEnter {
+@keyframes formAppear {
 
     from {
         opacity: 0;
@@ -262,12 +413,11 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 
 /* =========================================================
-   LABEL
+   INPUT GROUP
 ========================================================= */
 
 .input-group {
@@ -276,11 +426,16 @@ body {
 
 .input-label {
     display: block;
-    font-size: 11px;
-    font-weight: 700;
-    color: #aaa;
-    letter-spacing: 1.4px;
+
     margin-bottom: 8px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+    color: #aaa79d;
 }
 
 
@@ -294,60 +449,125 @@ body {
 
 .input-box input {
     width: 100%;
-    height: 54px;
 
-    border: 1px solid #e7e4d9;
-    background: rgba(255,255,255,.8);
+    height: 55px;
+
+    padding:
+        0
+        48px
+        0
+        47px;
+
+    border:
+        1px
+        solid
+        #e6e3d9;
 
     border-radius: 16px;
 
-    padding: 0 48px 0 46px;
-
     outline: none;
 
-    font-size: 14px;
+    background:
+        rgba(255,255,255,.82);
+
     color: #444;
 
+    font-size: 14px;
+
     transition:
-        border .25s,
+        border-color .25s,
         box-shadow .25s,
-        transform .25s;
+        transform .25s,
+        background .25s;
+}
+
+.input-box input::placeholder {
+    color: #bdbbb4;
 }
 
 .input-box input:focus {
-    border-color: #e98266;
+    border-color: #e78062;
+
+    background: #fff;
 
     box-shadow:
-        0 0 0 4px rgba(233,130,102,.12);
+        0 0 0 4px
+        rgba(231,128,98,.12);
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
+
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
 
 .input-icon {
     position: absolute;
+
     left: 16px;
     top: 50%;
-    transform: translateY(-50%);
-    color: #c5c3ba;
+
+    transform:
+        translateY(-50%);
+
+    color: #c3c1b9;
+
+    pointer-events: none;
+
+    transition:
+        color .25s;
 }
+
+.input-box:focus-within
+.input-icon {
+    color: #e77d60;
+}
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
 
 .password-toggle {
     position: absolute;
-    right: 15px;
+
+    right: 14px;
     top: 50%;
-    transform: translateY(-50%);
+
+    transform:
+        translateY(-50%);
+
+    width: 32px;
+    height: 32px;
 
     border: none;
+
     background: transparent;
 
-    cursor: pointer;
     color: #aaa;
 
-    transition: .2s;
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    transition:
+        color .2s,
+        background .2s;
 }
 
 .password-toggle:hover {
-    color: #e77e61;
+    color: #e77c5e;
+
+    background:
+        rgba(231,124,94,.08);
 }
 
 
@@ -357,20 +577,27 @@ body {
 
 .form-options {
     display: flex;
+
     justify-content: flex-end;
+
     margin-top: -8px;
-    margin-bottom: 18px;
+
+    margin-bottom: 20px;
 }
 
 .forgot {
     font-size: 12px;
+
     color: #e47c60;
+
     cursor: pointer;
-    transition: .2s;
+
+    transition:
+        opacity .2s;
 }
 
 .forgot:hover {
-    opacity: .7;
+    opacity: .65;
 }
 
 
@@ -379,66 +606,118 @@ body {
 ========================================================= */
 
 .login-btn {
+    position: relative;
+
     width: 100%;
+
     height: 56px;
 
     border: none;
+
     border-radius: 18px;
 
-    background: linear-gradient(
-        135deg,
-        #e87355,
-        #dd684d
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #e87557,
+            #dd694e
+        );
 
     color: white;
 
     font-size: 14px;
+
     font-weight: 700;
 
     cursor: pointer;
 
+    overflow: hidden;
+
     box-shadow:
-        0 10px 20px rgba(224,108,82,.25);
+        0 10px 22px
+        rgba(222,105,78,.25);
 
     transition:
         transform .2s,
-        box-shadow .2s;
+        box-shadow .2s,
+        opacity .2s;
+}
+
+.login-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.22),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition:
+        left .7s;
+}
+
+.login-btn:hover::before {
+    left: 140%;
 }
 
 .login-btn:hover {
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 14px 25px rgba(224,108,82,.35);
+        0 14px 28px
+        rgba(222,105,78,.32);
 }
 
 .login-btn:active {
-    transform: scale(.97);
+    transform:
+        scale(.97);
 }
 
 .login-btn.loading {
     pointer-events: none;
-    opacity: .8;
+
+    opacity: .85;
 }
 
 
 /* =========================================================
-   LOADING
+   BUTTON LOADER
 ========================================================= */
 
 .loader {
+    display: inline-block;
+
     width: 20px;
     height: 20px;
 
-    border: 3px solid rgba(255,255,255,.4);
+    border:
+        3px
+        solid
+        rgba(255,255,255,.4);
+
     border-top-color: white;
 
     border-radius: 50%;
 
-    animation: spin .8s linear infinite;
+    animation:
+        spin
+        .7s
+        linear
+        infinite;
 
-    display: inline-block;
     vertical-align: middle;
 }
 
@@ -447,84 +726,47 @@ body {
     to {
         transform: rotate(360deg);
     }
-
 }
 
 
 /* =========================================================
-   DIVIDER
+   POPUP OVERLAY
 ========================================================= */
 
-.divider {
+.popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
     display: flex;
+
     align-items: center;
-    gap: 12px;
 
-    margin: 25px 0 18px;
-
-    color: #bbb;
-    font-size: 11px;
-}
-
-.divider::before,
-.divider::after {
-    content: "";
-    height: 1px;
-    background: #e5e2d8;
-    flex: 1;
-}
-
-
-/* =========================================================
-   SOCIAL LOGIN
-========================================================= */
-
-.social-login {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-.social-btn {
-    width: 48px;
-    height: 48px;
-
-    border-radius: 15px;
-
-    border: 1px solid #e6e3d9;
-    background: white;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
     justify-content: center;
 
-    transition: .25s;
+    padding: 20px;
+
+    background:
+        rgba(20,35,34,.46);
+
+    backdrop-filter:
+        blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s,
+        visibility .3s;
 }
 
-.social-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(0,0,0,.08);
-}
+.popup-overlay.active {
+    opacity: 1;
 
-
-/* =========================================================
-   REGISTER
-========================================================= */
-
-.register {
-    text-align: center;
-    margin-top: 24px;
-
-    font-size: 12px;
-    color: #aaa;
-}
-
-.register span {
-    color: #e27659;
-    font-weight: 700;
-    cursor: pointer;
+    visibility: visible;
 }
 
 
@@ -532,55 +774,41 @@ body {
    POPUP
 ========================================================= */
 
-.popup-overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(20,35,34,.45);
-
-    backdrop-filter: blur(8px);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: .3s;
-
-    z-index: 100;
-}
-
-.popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
 .popup {
-    width: min(360px, 90vw);
+    width:
+        min(
+            370px,
+            90vw
+        );
 
-    background: #fffdf7;
+    padding:
+        35px
+        28px;
 
     border-radius: 30px;
 
-    padding: 35px 28px;
+    background: #fffdf7;
 
     text-align: center;
 
     box-shadow:
-        0 30px 70px rgba(0,0,0,.25);
+        0 30px 80px
+        rgba(0,0,0,.25);
 
-    transform: translateY(30px) scale(.9);
+    transform:
+        translateY(35px)
+        scale(.88);
 
     transition:
-        transform .45s cubic-bezier(.2,.8,.2,1);
+        transform
+        .45s
+        cubic-bezier(.2,.8,.2,1);
 }
 
 .popup-overlay.active .popup {
-    transform: translateY(0) scale(1);
+    transform:
+        translateY(0)
+        scale(1);
 }
 
 
@@ -589,78 +817,166 @@ body {
 ========================================================= */
 
 .popup-icon {
-    width: 75px;
-    height: 75px;
+    width: 76px;
+    height: 76px;
 
-    margin: auto;
+    margin: 0 auto;
 
     border-radius: 50%;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    font-size: 32px;
-
-    animation: popupIcon .6s .15s both;
+    animation:
+        popupIcon
+        .55s
+        .1s
+        both;
 }
 
-.popup.success .popup-icon {
-    background: #e1f5e9;
-    color: #39a866;
+.popup.success
+.popup-icon {
+    background: #e2f5e9;
+
+    color: #3baa69;
 }
 
-.popup.error .popup-icon {
-    background: #fde6e2;
+.popup.error
+.popup-icon {
+    background: #fde6e1;
+
     color: #e5684d;
 }
 
 @keyframes popupIcon {
 
     from {
-        transform: scale(0) rotate(-30deg);
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotate(-25deg);
     }
 
     to {
-        transform: scale(1) rotate(0);
-    }
+        opacity: 1;
 
+        transform:
+            scale(1)
+            rotate(0);
+    }
 }
+
+
+/* =========================================================
+   CHECKMARK
+========================================================= */
+
+.checkmark {
+    width: 27px;
+    height: 15px;
+
+    border-left:
+        4px
+        solid
+        currentColor;
+
+    border-bottom:
+        4px
+        solid
+        currentColor;
+
+    transform:
+        rotate(-45deg)
+        scale(0);
+
+    animation:
+        checkmark
+        .45s
+        .3s
+        forwards;
+}
+
+@keyframes checkmark {
+
+    to {
+        transform:
+            rotate(-45deg)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   POPUP TEXT
+========================================================= */
 
 .popup h2 {
     margin-top: 20px;
+
     font-size: 22px;
+
+    font-weight: 700;
+
+    color: #333;
 }
 
 .popup p {
-    margin-top: 8px;
+    margin-top: 9px;
+
     font-size: 13px;
-    color: #999;
+
     line-height: 1.6;
+
+    color: #999;
 }
+
+
+/* =========================================================
+   POPUP BUTTON
+========================================================= */
 
 .popup-close {
     width: 100%;
-    height: 48px;
 
-    border: none;
-    border-radius: 15px;
+    height: 49px;
 
     margin-top: 24px;
 
-    background: #e8795b;
+    border: none;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8795b,
+            #dd694e
+        );
 
     color: white;
+
+    font-size: 13px;
 
     font-weight: 700;
 
     cursor: pointer;
 
-    transition: .2s;
+    transition:
+        transform .2s,
+        box-shadow .2s;
 }
 
 .popup-close:hover {
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(221,105,78,.25);
 }
 
 
@@ -671,38 +987,62 @@ body {
 @media (max-width: 500px) {
 
     body {
-        align-items: center;
+        min-height: 100svh;
     }
 
     .login-wrapper {
         width: 100%;
-        padding: 14px;
+
+        padding:
+            12px;
     }
 
     .login-card {
-        min-height: 620px;
+        min-height: 600px;
+
         border-radius: 32px;
     }
 
     .header {
-        height: 260px;
-        padding: 32px 28px;
+        height: 265px;
+
+        padding:
+            32px
+            28px;
     }
 
     .header::after {
         bottom: -90px;
     }
 
+    .logo-container {
+        width: 54px;
+        height: 54px;
+
+        border-radius: 16px;
+    }
+
+    .title {
+        margin-top: 20px;
+    }
+
     .title h1 {
         font-size: 29px;
     }
 
+    .title p {
+        font-size: 13px;
+    }
+
     .form-area {
-        padding: 0 28px 30px;
+        padding:
+            0
+            28px
+            30px;
     }
 
     .input-box input {
-        height: 52px;
+        height: 53px;
     }
 
 }
@@ -715,25 +1055,39 @@ body {
 @media (max-width: 360px) {
 
     .login-card {
-        min-height: 590px;
+        min-height: 570px;
     }
 
     .header {
-        height: 235px;
-    }
+        height: 240px;
 
-    .title {
-        margin-top: 18px;
+        padding:
+            28px
+            25px;
     }
 
     .title h1 {
         font-size: 26px;
     }
 
-    .form-area {
-        margin-top: -10px;
+    .title p {
+        font-size: 12px;
     }
 
+    .form-area {
+        padding:
+            0
+            25px
+            25px;
+    }
+
+    .input-group {
+        margin-bottom: 16px;
+    }
+
+    .login-btn {
+        height: 53px;
+    }
 }
 
 
@@ -748,32 +1102,11 @@ input {
 
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid rgba(231,126,96,.25);
-}
+    outline:
+        3px solid
+        rgba(231,126,96,.25);
 
-
-/* =========================================================
-   SUCCESS CHECK ANIMATION
-========================================================= */
-
-.checkmark {
-    width: 28px;
-    height: 15px;
-
-    border-left: 4px solid currentColor;
-    border-bottom: 4px solid currentColor;
-
-    transform: rotate(-45deg) scale(0);
-
-    animation: checkmark .45s .35s forwards;
-}
-
-@keyframes checkmark {
-
-    to {
-        transform: rotate(-45deg) scale(1);
-    }
-
+    outline-offset: 2px;
 }
 
 </style>
@@ -789,10 +1122,13 @@ input:focus-visible {
 
 <div class="background">
 
-    <div class="circle one"></div>
-    <div class="circle two"></div>
-    <div class="circle three"></div>
-    <div class="circle four"></div>
+    <div class="bg-circle"></div>
+
+    <div class="bg-circle"></div>
+
+    <div class="bg-circle"></div>
+
+    <div class="bg-circle"></div>
 
 </div>
 
@@ -801,77 +1137,87 @@ input:focus-visible {
      LOGIN
 ===================================================== -->
 
-<div class="login-wrapper">
+<main class="login-wrapper">
 
-    <div class="login-card">
+    <section class="login-card">
 
 
-        <!-- HEADER -->
+        <!-- =================================================
+             HEADER
+        ================================================== -->
 
-        <div class="header">
+        <header class="header">
 
-            <div class="app-icon">
 
-                <!-- APP ICON -->
+            <!-- LOGO -->
 
-                <svg width="24"
-                     height="24"
-                     viewBox="0 0 24 24"
-                     fill="none">
+            <div class="logo-container">
 
-                    <path
-                        d="M12 3L19 6V11C19 15.5 16 19.3 12 21C8 19.3 5 15.5 5 11V6L12 3Z"
-                        stroke="white"
-                        stroke-width="1.8"
-                        stroke-linejoin="round"/>
-
-                    <path
-                        d="M9 12L11 14L15 10"
-                        stroke="white"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"/>
-
-                </svg>
+                <img
+                    src="https://yanuar-moga.github.io/assets/logo.jpg"
+                    alt="Logo MB"
+                    onerror="this.style.display='none';"
+                >
 
             </div>
 
+
+            <!-- TITLE -->
 
             <div class="title">
 
-                <h1>Terra Login</h1>
+                <h1>
+                    MB Login
+                </h1>
 
-                <p>Welcome back, sign in to continue</p>
+                <p>
+                    Welcome back, sign in to continue
+                </p>
 
             </div>
 
-        </div>
+
+        </header>
 
 
 
-        <!-- FORM -->
+        <!-- =================================================
+             FORM
+        ================================================== -->
 
         <div class="form-area">
 
-            <form id="loginForm">
+            <form
+                id="loginForm"
+                autocomplete="on">
 
 
                 <!-- USERNAME -->
 
                 <div class="input-group">
 
-                    <label class="input-label">
+                    <label
+                        class="input-label"
+                        for="username">
+
                         USERNAME
+
                     </label>
+
 
                     <div class="input-box">
 
-                        <span class="input-icon">
 
-                            <svg width="20"
-                                 height="20"
-                                 viewBox="0 0 24 24"
-                                 fill="none">
+                        <!-- USER ICON -->
+
+                        <span
+                            class="input-icon">
+
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none">
 
                                 <circle
                                     cx="12"
@@ -894,6 +1240,7 @@ input:focus-visible {
                         <input
                             type="text"
                             id="username"
+                            name="username"
                             placeholder="Enter your username"
                             autocomplete="username"
                             required>
@@ -908,18 +1255,28 @@ input:focus-visible {
 
                 <div class="input-group">
 
-                    <label class="input-label">
+                    <label
+                        class="input-label"
+                        for="password">
+
                         PASSWORD
+
                     </label>
+
 
                     <div class="input-box">
 
-                        <span class="input-icon">
 
-                            <svg width="20"
-                                 height="20"
-                                 viewBox="0 0 24 24"
-                                 fill="none">
+                        <!-- LOCK ICON -->
+
+                        <span
+                            class="input-icon">
+
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none">
 
                                 <rect
                                     x="5"
@@ -943,10 +1300,13 @@ input:focus-visible {
                         <input
                             type="password"
                             id="password"
+                            name="password"
                             placeholder="Enter your password"
                             autocomplete="current-password"
                             required>
 
+
+                        <!-- EYE -->
 
                         <button
                             type="button"
@@ -954,8 +1314,8 @@ input:focus-visible {
                             id="togglePassword"
                             aria-label="Show password">
 
+
                             <svg
-                                id="eyeIcon"
                                 width="20"
                                 height="20"
                                 viewBox="0 0 24 24"
@@ -977,13 +1337,14 @@ input:focus-visible {
 
                         </button>
 
+
                     </div>
 
                 </div>
 
 
 
-                <!-- FORGOT -->
+                <!-- FORGOT PASSWORD -->
 
                 <div class="form-options">
 
@@ -999,7 +1360,7 @@ input:focus-visible {
 
 
 
-                <!-- LOGIN -->
+                <!-- LOGIN BUTTON -->
 
                 <button
                     type="submit"
@@ -1015,116 +1376,11 @@ input:focus-visible {
 
             </form>
 
-
-
-            <!-- DIVIDER -->
-
-            <div class="divider">
-
-                OR CONTINUE WITH
-
-            </div>
-
-
-
-            <!-- SOCIAL -->
-
-            <div class="social-login">
-
-                <button
-                    class="social-btn"
-                    onclick="socialLogin('Google')"
-                    aria-label="Google">
-
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24">
-
-                        <path
-                            fill="#EA4335"
-                            d="M21.35 12.2c0-.7-.06-1.37-.18-2H12v3.79h5.23a4.47 4.47 0 0 1-1.94 2.93v2.43h3.14c1.84-1.69 2.92-4.18 2.92-7.15Z"/>
-
-                        <path
-                            fill="#4285F4"
-                            d="M12 21.5c2.63 0 4.84-.87 6.45-2.35l-3.14-2.43c-.87.58-1.98.92-3.31.92-2.55 0-4.71-1.72-5.49-4.03H3.26v2.51A9.74 9.74 0 0 0 12 21.5Z"/>
-
-                        <path
-                            fill="#FBBC05"
-                            d="M6.51 13.61A5.86 5.86 0 0 1 6.2 12c0-.56.1-1.1.31-1.61V7.88H3.26A9.5 9.5 0 0 0 2.25 12c0 1.53.37 2.98 1.01 4.12l3.25-2.51Z"/>
-
-                        <path
-                            fill="#34A853"
-                            d="M12 6.36c1.43 0 2.71.49 3.72 1.45l2.78-2.78C16.84 3.5 14.63 2.5 12 2.5a9.74 9.74 0 0 0-8.74 5.38l3.25 2.51C7.29 8.08 9.45 6.36 12 6.36Z"/>
-
-                    </svg>
-
-                </button>
-
-
-                <button
-                    class="social-btn"
-                    onclick="socialLogin('Apple')"
-                    aria-label="Apple">
-
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="#222">
-
-                        <path d="M17.05 12.5c0-2.35 1.92-3.49 2.01-3.55-1.1-1.6-2.82-1.82-3.43-1.84-1.45-.15-2.84.86-3.57.86-.74 0-1.88-.84-3.09-.82-1.59.03-3.06.93-3.88 2.35-1.68 2.91-.43 7.2 1.18 9.55.8 1.15 1.72 2.44 2.95 2.39 1.18-.05 1.63-.76 3.06-.76 1.43 0 1.84.76 3.09.73 1.28-.02 2.09-1.17 2.87-2.33.9-1.31 1.27-2.58 1.29-2.65-.03-.01-2.47-.95-2.48-3.93ZM14.7 5.57c.66-.8 1.11-1.92.99-3.03-.96.04-2.12.64-2.8 1.44-.61.7-1.15 1.83-1 2.91 1.07.08 2.16-.54 2.81-1.32Z"/>
-
-                    </svg>
-
-                </button>
-
-
-                <button
-                    class="social-btn"
-                    onclick="socialLogin('Facebook')"
-                    aria-label="Facebook">
-
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24">
-
-                        <circle
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            fill="#1877F2"/>
-
-                        <path
-                            fill="white"
-                            d="M13.3 19v-6h2l.3-2.3h-2.3V9.2c0-.7.2-1.2 1.2-1.2h1.2V6c-.2 0-.9-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.7H9v2.3h1.9v6h2.4Z"/>
-
-                    </svg>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- REGISTER -->
-
-            <div class="register">
-
-                Don't have an account?
-
-                <span onclick="showRegister()">
-                    Create account
-                </span>
-
-            </div>
-
         </div>
 
-    </div>
+    </section>
 
-</div>
+</main>
 
 
 
@@ -1136,10 +1392,13 @@ input:focus-visible {
     class="popup-overlay"
     id="popupOverlay">
 
+
     <div
         class="popup"
         id="popup">
 
+
+        <!-- ICON -->
 
         <div
             class="popup-icon"
@@ -1150,23 +1409,31 @@ input:focus-visible {
         </div>
 
 
+        <!-- TITLE -->
+
         <h2 id="popupTitle">
             Login Successful
         </h2>
 
 
+        <!-- MESSAGE -->
+
         <p id="popupMessage">
-            Welcome back! You have successfully signed in.
+            Selamat datang kembali.
         </p>
 
 
+        <!-- CLOSE -->
+
         <button
+            type="button"
             class="popup-close"
-            onclick="closePopup()">
+            id="popupClose">
 
             Continue
 
         </button>
+
 
     </div>
 
@@ -1177,70 +1444,100 @@ input:focus-visible {
 <script>
 
 /* =========================================================
-   ELEMENTS
+   ELEMENT
 ========================================================= */
 
 const loginForm =
-    document.getElementById("loginForm");
+    document.getElementById(
+        "loginForm"
+    );
 
 const username =
-    document.getElementById("username");
+    document.getElementById(
+        "username"
+    );
 
 const password =
-    document.getElementById("password");
+    document.getElementById(
+        "password"
+    );
 
 const loginButton =
-    document.getElementById("loginButton");
+    document.getElementById(
+        "loginButton"
+    );
 
 const loginText =
-    document.getElementById("loginText");
+    document.getElementById(
+        "loginText"
+    );
 
 const togglePassword =
-    document.getElementById("togglePassword");
+    document.getElementById(
+        "togglePassword"
+    );
 
 const popupOverlay =
-    document.getElementById("popupOverlay");
+    document.getElementById(
+        "popupOverlay"
+    );
 
 const popup =
-    document.getElementById("popup");
+    document.getElementById(
+        "popup"
+    );
 
 const popupIcon =
-    document.getElementById("popupIcon");
+    document.getElementById(
+        "popupIcon"
+    );
 
 const popupTitle =
-    document.getElementById("popupTitle");
+    document.getElementById(
+        "popupTitle"
+    );
 
 const popupMessage =
-    document.getElementById("popupMessage");
+    document.getElementById(
+        "popupMessage"
+    );
+
+const popupClose =
+    document.getElementById(
+        "popupClose"
+    );
 
 
 /* =========================================================
-   SHOW / HIDE PASSWORD
+   PASSWORD TOGGLE
 ========================================================= */
 
 togglePassword.addEventListener(
     "click",
     function () {
 
-        const isPassword =
-            password.type === "password";
+        const showing =
+            password.type === "text";
 
-        password.type =
-            isPassword ? "text" : "password";
 
-        togglePassword.setAttribute(
-            "aria-label",
-            isPassword
-                ? "Hide password"
-                : "Show password"
-        );
+        if (showing) {
+
+            password.type =
+                "password";
+
+        } else {
+
+            password.type =
+                "text";
+
+        }
 
     }
 );
 
 
 /* =========================================================
-   LOGIN
+   LOGIN SUBMIT
 ========================================================= */
 
 loginForm.addEventListener(
@@ -1249,6 +1546,7 @@ loginForm.addEventListener(
 
         event.preventDefault();
 
+
         const user =
             username.value.trim();
 
@@ -1256,63 +1554,108 @@ loginForm.addEventListener(
             password.value.trim();
 
 
-        if (!user || !pass) {
+        /* VALIDASI */
+
+        if (!user) {
 
             showPopup(
                 "error",
-                "Login Failed",
-                "Username dan password wajib diisi."
+                "Username Required",
+                "Silakan masukkan username terlebih dahulu."
             );
 
-            return;
+            username.focus();
 
+            return;
         }
 
 
-        /* LOADING */
+        if (!pass) {
 
-        loginButton.classList.add("loading");
+            showPopup(
+                "error",
+                "Password Required",
+                "Silakan masukkan password terlebih dahulu."
+            );
+
+            password.focus();
+
+            return;
+        }
+
+
+        /* =================================================
+           LOADING
+        ================================================= */
+
+        loginButton.classList.add(
+            "loading"
+        );
+
+        loginButton.disabled =
+            true;
 
         loginText.innerHTML =
             '<span class="loader"></span>';
 
 
         /*
-         * Simulasi proses login.
+         * ==================================================
+         * SIMULASI LOGIN
          *
-         * Nanti bagian ini dapat diganti
-         * dengan API / Google Apps Script.
+         * BAGIAN INI NANTI BISA DIGANTI DENGAN:
+         *
+         * Google Apps Script
+         * REST API
+         * Firebase
+         * Spreadsheet
+         * Backend lainnya
+         * ==================================================
          */
 
-        setTimeout(function () {
-
-            loginButton.classList.remove("loading");
-
-            loginText.innerText =
-                "Sign In";
+        setTimeout(
+            function () {
 
 
-            /*
-             * CONTOH LOGIN BERHASIL
-             */
+                /* KEMBALIKAN BUTTON */
 
-            showPopup(
-                "success",
-                "Login Successful",
-                "Selamat datang kembali, " +
-                user +
-                "! Anda berhasil masuk."
-            );
+                loginButton.classList.remove(
+                    "loading"
+                );
+
+                loginButton.disabled =
+                    false;
+
+                loginText.innerText =
+                    "Sign In";
 
 
-        }, 1400);
+                /*
+                 * CONTOH HASIL LOGIN
+                 *
+                 * Untuk sementara setiap
+                 * username/password dianggap benar.
+                 */
+
+                showPopup(
+                    "success",
+                    "Login Successful",
+                    "Selamat datang kembali, " +
+                    user +
+                    ". Anda berhasil masuk."
+                );
+
+
+            },
+            1300
+        );
 
     }
 );
 
 
 /* =========================================================
-   POPUP
+   SHOW POPUP
 ========================================================= */
 
 function showPopup(
@@ -1321,13 +1664,21 @@ function showPopup(
     message
 ) {
 
+
+    /* RESET CLASS */
+
     popup.classList.remove(
         "success",
         "error"
     );
 
-    popup.classList.add(type);
 
+    popup.classList.add(
+        type
+    );
+
+
+    /* TEXT */
 
     popupTitle.innerText =
         title;
@@ -1336,14 +1687,20 @@ function showPopup(
         message;
 
 
+    /* ICON */
+
     if (type === "success") {
 
         popupIcon.innerHTML =
-            '<div class="checkmark"></div>';
+
+            `
+            <div class="checkmark"></div>
+            `;
 
     } else {
 
         popupIcon.innerHTML =
+
             `
             <svg
                 width="34"
@@ -1369,7 +1726,11 @@ function showPopup(
     }
 
 
-    popupOverlay.classList.add("active");
+    /* SHOW */
+
+    popupOverlay.classList.add(
+        "active"
+    );
 
 }
 
@@ -1380,21 +1741,34 @@ function showPopup(
 
 function closePopup() {
 
-    popupOverlay.classList.remove("active");
+    popupOverlay.classList.remove(
+        "active"
+    );
 
 }
 
 
 /* =========================================================
-   CLICK OUTSIDE POPUP
+   CLOSE BUTTON
+========================================================= */
+
+popupClose.addEventListener(
+    "click",
+    closePopup
+);
+
+
+/* =========================================================
+   CLICK OUTSIDE
 ========================================================= */
 
 popupOverlay.addEventListener(
     "click",
-    function(event) {
+    function (event) {
 
         if (
-            event.target === popupOverlay
+            event.target ===
+            popupOverlay
         ) {
 
             closePopup();
@@ -1411,10 +1785,11 @@ popupOverlay.addEventListener(
 
 document.addEventListener(
     "keydown",
-    function(event) {
+    function (event) {
 
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
             closePopup();
@@ -1430,15 +1805,17 @@ document.addEventListener(
 ========================================================= */
 
 document
-    .getElementById("forgotPassword")
+    .getElementById(
+        "forgotPassword"
+    )
     .addEventListener(
         "click",
-        function() {
+        function () {
 
             showPopup(
                 "success",
                 "Reset Password",
-                "Link reset password akan dikirim ke email Anda."
+                "Fitur reset password akan diproses melalui sistem."
             );
 
         }
@@ -1446,35 +1823,23 @@ document
 
 
 /* =========================================================
-   SOCIAL LOGIN
+   PREVENT ACCIDENTAL SUBMIT
 ========================================================= */
 
-function socialLogin(provider) {
+password.addEventListener(
+    "keypress",
+    function (event) {
 
-    showPopup(
-        "success",
-        provider + " Login",
-        "Proses login menggunakan " +
-        provider +
-        " sedang dipersiapkan."
-    );
+        if (
+            event.key === "Enter"
+        ) {
 
-}
+            loginForm.requestSubmit();
 
+        }
 
-/* =========================================================
-   REGISTER
-========================================================= */
-
-function showRegister() {
-
-    showPopup(
-        "success",
-        "Create Account",
-        "Halaman pendaftaran akun akan segera tersedia."
-    );
-
-}
+    }
+);
 
 </script>
 
