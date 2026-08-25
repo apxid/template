@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Terra Login</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.35), transparent 30%),
+        linear-gradient(135deg, #c9e8e2, #d9f0eb 50%, #b8ddd7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    color: #333;
+}
+
+
+/* =========================================================
+   BACKGROUND ANIMATION
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: .35;
+    animation: float 8s ease-in-out infinite;
+}
+
+.circle.one {
+    width: 180px;
+    height: 180px;
+    background: #ffffff;
+    top: 8%;
+    left: 8%;
+}
+
+.circle.two {
+    width: 250px;
+    height: 250px;
+    background: #f6a38b;
+    right: -70px;
+    top: 10%;
+    animation-delay: 2s;
+}
+
+.circle.three {
+    width: 140px;
+    height: 140px;
+    background: #ffffff;
+    bottom: 10%;
+    left: -40px;
+    animation-delay: 4s;
+}
+
+.circle.four {
+    width: 200px;
+    height: 200px;
+    background: #ef886f;
+    right: 10%;
+    bottom: -80px;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-25px) translateX(15px);
+    }
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.login-wrapper {
+    width: min(430px, 92vw);
+    padding: 20px;
+}
+
+
+/* =========================================================
+   LOGIN CARD
+========================================================= */
+
+.login-card {
+    position: relative;
+    overflow: hidden;
+    background: #f8f7ef;
+    border-radius: 38px;
+    min-height: 650px;
+    box-shadow:
+        0 30px 70px rgba(39, 79, 77, .25),
+        0 8px 25px rgba(0,0,0,.08);
+
+    animation: cardEnter .8s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cardEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   ORANGE HEADER
+========================================================= */
+
+.header {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    padding: 42px 36px;
+    background: linear-gradient(
+        145deg,
+        #ed795b,
+        #e88365 50%,
+        #f09a7b
+    );
+}
+
+
+/* wave putih */
+
+.header::after {
+    content: "";
+    position: absolute;
+    left: -15%;
+    bottom: -100px;
+    width: 130%;
+    height: 190px;
+    background: #f8f7ef;
+    border-radius: 50% 50% 0 0 / 65% 65% 0 0;
+    transform: rotate(-2deg);
+}
+
+
+/* =========================================================
+   APP ICON
+========================================================= */
+
+.app-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.22);
+    border: 1px solid rgba(255,255,255,.35);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(8px);
+
+    color: white;
+
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.title {
+    position: relative;
+    z-index: 3;
+    margin-top: 25px;
+    color: white;
+}
+
+.title h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -.8px;
+}
+
+.title p {
+    margin-top: 6px;
+    font-size: 14px;
+    opacity: .88;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-area {
+    position: relative;
+    z-index: 5;
+    padding: 0 36px 35px;
+    margin-top: -18px;
+
+    animation: formEnter 1s .2s both;
+}
+
+@keyframes formEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #aaa;
+    letter-spacing: 1.4px;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-box {
+    position: relative;
+}
+
+.input-box input {
+    width: 100%;
+    height: 54px;
+
+    border: 1px solid #e7e4d9;
+    background: rgba(255,255,255,.8);
+
+    border-radius: 16px;
+
+    padding: 0 48px 0 46px;
+
+    outline: none;
+
+    font-size: 14px;
+    color: #444;
+
+    transition:
+        border .25s,
+        box-shadow .25s,
+        transform .25s;
+}
+
+.input-box input:focus {
+    border-color: #e98266;
+
+    box-shadow:
+        0 0 0 4px rgba(233,130,102,.12);
+
+    transform: translateY(-1px);
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #c5c3ba;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+    color: #aaa;
+
+    transition: .2s;
+}
+
+.password-toggle:hover {
+    color: #e77e61;
+}
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+.form-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -8px;
+    margin-bottom: 18px;
+}
+
+.forgot {
+    font-size: 12px;
+    color: #e47c60;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.forgot:hover {
+    opacity: .7;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-btn {
+    width: 100%;
+    height: 56px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #e87355,
+        #dd684d
+    );
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 20px rgba(224,108,82,.25);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 25px rgba(224,108,82,.35);
+}
+
+.login-btn:active {
+    transform: scale(.97);
+}
+
+.login-btn.loading {
+    pointer-events: none;
+    opacity: .8;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loader {
+    width: 20px;
+    height: 20px;
+
+    border: 3px solid rgba(255,255,255,.4);
+    border-top-color: white;
+
+    border-radius: 50%;
+
+    animation: spin .8s linear infinite;
+
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 25px 0 18px;
+
+    color: #bbb;
+    font-size: 11px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    background: #e5e2d8;
+    flex: 1;
+}
+
+
+/* =========================================================
+   SOCIAL LOGIN
+========================================================= */
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.social-btn {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e6e3d9;
+    background: white;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .25s;
+}
+
+.social-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+.register {
+    text-align: center;
+    margin-top: 24px;
+
+    font-size: 12px;
+    color: #aaa;
+}
+
+.register span {
+    color: #e27659;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(20,35,34,.45);
+
+    backdrop-filter: blur(8px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 100;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup {
+    width: min(360px, 90vw);
+
+    background: #fffdf7;
+
+    border-radius: 30px;
+
+    padding: 35px 28px;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.25);
+
+    transform: translateY(30px) scale(.9);
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.popup-overlay.active .popup {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   POPUP ICON
+========================================================= */
+
+.popup-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 32px;
+
+    animation: popupIcon .6s .15s both;
+}
+
+.popup.success .popup-icon {
+    background: #e1f5e9;
+    color: #39a866;
+}
+
+.popup.error .popup-icon {
+    background: #fde6e2;
+    color: #e5684d;
+}
+
+@keyframes popupIcon {
+
+    from {
+        transform: scale(0) rotate(-30deg);
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+    }
+
+}
+
+.popup h2 {
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.popup p {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+}
+
+.popup-close {
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    border-radius: 15px;
+
+    margin-top: 24px;
+
+    background: #e8795b;
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.popup-close:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+        align-items: center;
+    }
+
+    .login-wrapper {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .login-card {
+        min-height: 620px;
+        border-radius: 32px;
+    }
+
+    .header {
+        height: 260px;
+        padding: 32px 28px;
+    }
+
+    .header::after {
+        bottom: -90px;
+    }
+
+    .title h1 {
+        font-size: 29px;
+    }
+
+    .form-area {
+        padding: 0 28px 30px;
+    }
+
+    .input-box input {
+        height: 52px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .login-card {
+        min-height: 590px;
+    }
+
+    .header {
+        height: 235px;
+    }
+
+    .title {
+        margin-top: 18px;
+    }
+
+    .title h1 {
+        font-size: 26px;
+    }
+
+    .form-area {
+        margin-top: -10px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button,
+input {
+    font-family: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(231,126,96,.25);
+}
+
+
+/* =========================================================
+   SUCCESS CHECK ANIMATION
+========================================================= */
+
+.checkmark {
+    width: 28px;
+    height: 15px;
+
+    border-left: 4px solid currentColor;
+    border-bottom: 4px solid currentColor;
+
+    transform: rotate(-45deg) scale(0);
+
+    animation: checkmark .45s .35s forwards;
+}
+
+@keyframes checkmark {
+
+    to {
+        transform: rotate(-45deg) scale(1);
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+    <div class="circle three"></div>
+    <div class="circle four"></div>
+
+</div>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="app-icon">
+
+                <!-- APP ICON -->
+
+                <svg width="24"
+                     height="24"
+                     viewBox="0 0 24 24"
+                     fill="none">
+
+                    <path
+                        d="M12 3L19 6V11C19 15.5 16 19.3 12 21C8 19.3 5 15.5 5 11V6L12 3Z"
+                        stroke="white"
+                        stroke-width="1.8"
+                        stroke-linejoin="round"/>
+
+                    <path
+                        d="M9 12L11 14L15 10"
+                        stroke="white"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="title">
+
+                <h1>Terra Login</h1>
+
+                <p>Welcome back, sign in to continue</p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <div class="form-area">
+
+            <form id="loginForm">
+
+
+                <!-- USERNAME -->
+
+                <div class="input-group">
+
+                    <label class="input-label">
+                        USERNAME
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+
+                            <svg width="20"
+                                 height="20"
+                                 viewBox="0 0 24 24"
+                                 fill="none">
+
+                                <circle
+                                    cx="12"
+                                    cy="8"
+                                    r="3.5"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                                <path
+                                    d="M5 20C5.8 16.5 8.1 15 12 15C15.9 15 18.2 16.5 19 20"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"/>
+
+                            </svg>
+
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label class="input-label">
+                        PASSWORD
+                    </label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+
+                            <svg width="20"
+                                 height="20"
+                                 viewBox="0 0 24 24"
+                                 fill="none">
+
+                                <rect
+                                    x="5"
+                                    y="10"
+                                    width="14"
+                                    height="10"
+                                    rx="2"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                                <path
+                                    d="M8 10V7C8 4.8 9.8 3 12 3C14.2 3 16 4.8 16 7V10"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                            </svg>
+
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword"
+                            aria-label="Show password">
+
+                            <svg
+                                id="eyeIcon"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none">
+
+                                <path
+                                    d="M2.5 12C4.5 7.8 8 5.5 12 5.5C16 5.5 19.5 7.8 21.5 12C19.5 16.2 16 18.5 12 18.5C8 18.5 4.5 16.2 2.5 12Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="3"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FORGOT -->
+
+                <div class="form-options">
+
+                    <span
+                        class="forgot"
+                        id="forgotPassword">
+
+                        Forgot password?
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    id="loginButton">
+
+                    <span id="loginText">
+                        Sign In
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+
+                OR CONTINUE WITH
+
+            </div>
+
+
+
+            <!-- SOCIAL -->
+
+            <div class="social-login">
+
+                <button
+                    class="social-btn"
+                    onclick="socialLogin('Google')"
+                    aria-label="Google">
+
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24">
+
+                        <path
+                            fill="#EA4335"
+                            d="M21.35 12.2c0-.7-.06-1.37-.18-2H12v3.79h5.23a4.47 4.47 0 0 1-1.94 2.93v2.43h3.14c1.84-1.69 2.92-4.18 2.92-7.15Z"/>
+
+                        <path
+                            fill="#4285F4"
+                            d="M12 21.5c2.63 0 4.84-.87 6.45-2.35l-3.14-2.43c-.87.58-1.98.92-3.31.92-2.55 0-4.71-1.72-5.49-4.03H3.26v2.51A9.74 9.74 0 0 0 12 21.5Z"/>
+
+                        <path
+                            fill="#FBBC05"
+                            d="M6.51 13.61A5.86 5.86 0 0 1 6.2 12c0-.56.1-1.1.31-1.61V7.88H3.26A9.5 9.5 0 0 0 2.25 12c0 1.53.37 2.98 1.01 4.12l3.25-2.51Z"/>
+
+                        <path
+                            fill="#34A853"
+                            d="M12 6.36c1.43 0 2.71.49 3.72 1.45l2.78-2.78C16.84 3.5 14.63 2.5 12 2.5a9.74 9.74 0 0 0-8.74 5.38l3.25 2.51C7.29 8.08 9.45 6.36 12 6.36Z"/>
+
+                    </svg>
+
+                </button>
+
+
+                <button
+                    class="social-btn"
+                    onclick="socialLogin('Apple')"
+                    aria-label="Apple">
+
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="#222">
+
+                        <path d="M17.05 12.5c0-2.35 1.92-3.49 2.01-3.55-1.1-1.6-2.82-1.82-3.43-1.84-1.45-.15-2.84.86-3.57.86-.74 0-1.88-.84-3.09-.82-1.59.03-3.06.93-3.88 2.35-1.68 2.91-.43 7.2 1.18 9.55.8 1.15 1.72 2.44 2.95 2.39 1.18-.05 1.63-.76 3.06-.76 1.43 0 1.84.76 3.09.73 1.28-.02 2.09-1.17 2.87-2.33.9-1.31 1.27-2.58 1.29-2.65-.03-.01-2.47-.95-2.48-3.93ZM14.7 5.57c.66-.8 1.11-1.92.99-3.03-.96.04-2.12.64-2.8 1.44-.61.7-1.15 1.83-1 2.91 1.07.08 2.16-.54 2.81-1.32Z"/>
+
+                    </svg>
+
+                </button>
+
+
+                <button
+                    class="social-btn"
+                    onclick="socialLogin('Facebook')"
+                    aria-label="Facebook">
+
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24">
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            fill="#1877F2"/>
+
+                        <path
+                            fill="white"
+                            d="M13.3 19v-6h2l.3-2.3h-2.3V9.2c0-.7.2-1.2 1.2-1.2h1.2V6c-.2 0-.9-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.7H9v2.3h1.9v6h2.4Z"/>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- REGISTER -->
+
+            <div class="register">
+
+                Don't have an account?
+
+                <span onclick="showRegister()">
+                    Create account
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     POPUP
+===================================================== -->
+
+<div
+    class="popup-overlay"
+    id="popupOverlay">
+
+    <div
+        class="popup"
+        id="popup">
+
+
+        <div
+            class="popup-icon"
+            id="popupIcon">
+
+            <div class="checkmark"></div>
+
+        </div>
+
+
+        <h2 id="popupTitle">
+            Login Successful
+        </h2>
+
+
+        <p id="popupMessage">
+            Welcome back! You have successfully signed in.
+        </p>
+
+
+        <button
+            class="popup-close"
+            onclick="closePopup()">
+
+            Continue
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const username =
+    document.getElementById("username");
+
+const password =
+    document.getElementById("password");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const loginText =
+    document.getElementById("loginText");
+
+const togglePassword =
+    document.getElementById("togglePassword");
+
+const popupOverlay =
+    document.getElementById("popupOverlay");
+
+const popup =
+    document.getElementById("popup");
+
+const popupIcon =
+    document.getElementById("popupIcon");
+
+const popupTitle =
+    document.getElementById("popupTitle");
+
+const popupMessage =
+    document.getElementById("popupMessage");
+
+
+/* =========================================================
+   SHOW / HIDE PASSWORD
+========================================================= */
+
+togglePassword.addEventListener(
+    "click",
+    function () {
+
+        const isPassword =
+            password.type === "password";
+
+        password.type =
+            isPassword ? "text" : "password";
+
+        togglePassword.setAttribute(
+            "aria-label",
+            isPassword
+                ? "Hide password"
+                : "Show password"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+loginForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+        const user =
+            username.value.trim();
+
+        const pass =
+            password.value.trim();
+
+
+        if (!user || !pass) {
+
+            showPopup(
+                "error",
+                "Login Failed",
+                "Username dan password wajib diisi."
+            );
+
+            return;
+
+        }
+
+
+        /* LOADING */
+
+        loginButton.classList.add("loading");
+
+        loginText.innerHTML =
+            '<span class="loader"></span>';
+
+
+        /*
+         * Simulasi proses login.
+         *
+         * Nanti bagian ini dapat diganti
+         * dengan API / Google Apps Script.
+         */
+
+        setTimeout(function () {
+
+            loginButton.classList.remove("loading");
+
+            loginText.innerText =
+                "Sign In";
+
+
+            /*
+             * CONTOH LOGIN BERHASIL
+             */
+
+            showPopup(
+                "success",
+                "Login Successful",
+                "Selamat datang kembali, " +
+                user +
+                "! Anda berhasil masuk."
+            );
+
+
+        }, 1400);
+
+    }
+);
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+function showPopup(
+    type,
+    title,
+    message
+) {
+
+    popup.classList.remove(
+        "success",
+        "error"
+    );
+
+    popup.classList.add(type);
+
+
+    popupTitle.innerText =
+        title;
+
+    popupMessage.innerText =
+        message;
+
+
+    if (type === "success") {
+
+        popupIcon.innerHTML =
+            '<div class="checkmark"></div>';
+
+    } else {
+
+        popupIcon.innerHTML =
+            `
+            <svg
+                width="34"
+                height="34"
+                viewBox="0 0 24 24"
+                fill="none">
+
+                <path
+                    d="M6 6L18 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+                <path
+                    d="M18 6L6 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+            </svg>
+            `;
+
+    }
+
+
+    popupOverlay.classList.add("active");
+
+}
+
+
+/* =========================================================
+   CLOSE POPUP
+========================================================= */
+
+function closePopup() {
+
+    popupOverlay.classList.remove("active");
+
+}
+
+
+/* =========================================================
+   CLICK OUTSIDE POPUP
+========================================================= */
+
+popupOverlay.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target === popupOverlay
+        ) {
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+document
+    .getElementById("forgotPassword")
+    .addEventListener(
+        "click",
+        function() {
+
+            showPopup(
+                "success",
+                "Reset Password",
+                "Link reset password akan dikirim ke email Anda."
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SOCIAL LOGIN
+========================================================= */
+
+function socialLogin(provider) {
+
+    showPopup(
+        "success",
+        provider + " Login",
+        "Proses login menggunakan " +
+        provider +
+        " sedang dipersiapkan."
+    );
+
+}
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+function showRegister() {
+
+    showPopup(
+        "success",
+        "Create Account",
+        "Halaman pendaftaran akun akan segera tersedia."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
