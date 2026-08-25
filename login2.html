@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MB Login</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d9e6ea 0%,
+            #eef2f1 45%,
+            #cbdedb 100%
+        );
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow-x: hidden;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.bg-shape {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(2px);
+
+    opacity: .35;
+
+    animation:
+        floating 8s ease-in-out infinite;
+}
+
+.bg-shape:nth-child(1) {
+    width: 180px;
+    height: 180px;
+
+    background: #ffffff;
+
+    left: 4%;
+    top: 8%;
+}
+
+.bg-shape:nth-child(2) {
+    width: 260px;
+    height: 260px;
+
+    background: #6bc4bd;
+
+    right: -100px;
+    top: 10%;
+
+    animation-delay: 2s;
+}
+
+.bg-shape:nth-child(3) {
+    width: 160px;
+    height: 160px;
+
+    background: #ffffff;
+
+    left: -70px;
+    bottom: 8%;
+
+    animation-delay: 4s;
+}
+
+.bg-shape:nth-child(4) {
+    width: 230px;
+    height: 230px;
+
+    background: #4b96a0;
+
+    right: 5%;
+    bottom: -110px;
+
+    animation-delay: 1s;
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(20px,-25px,0)
+            scale(1.06);
+    }
+}
+
+
+/* =========================================================
+   LOGIN WRAPPER
+========================================================= */
+
+.login-wrapper {
+    position: relative;
+
+    z-index: 5;
+
+    width: min(
+        430px,
+        94vw
+    );
+
+    padding: 15px;
+}
+
+
+/* =========================================================
+   LOGIN CARD
+========================================================= */
+
+.login-card {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 700px;
+
+    overflow: hidden;
+
+    border-radius: 42px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 35px 80px
+        rgba(15,47,66,.28),
+
+        0 10px 25px
+        rgba(0,0,0,.12);
+
+    animation:
+        cardEnter
+        .8s
+        cubic-bezier(.2,.8,.2,1)
+        both;
+}
+
+@keyframes cardEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(45px)
+            scale(.94);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   TOP WHITE AREA
+========================================================= */
+
+.top-area {
+    position: relative;
+
+    height: 285px;
+
+    padding-top: 38px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f9f5ff 0%,
+            #f7f3ff 70%,
+            #f0ecfa 100%
+        );
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   BLUE WAVE
+========================================================= */
+
+.top-area::after {
+    content: "";
+
+    position: absolute;
+
+    left: -8%;
+
+    bottom: -65px;
+
+    width: 116%;
+
+    height: 130px;
+
+    background:
+        #1239e8;
+
+    border-radius:
+        0
+        0
+        50%
+        50% /
+        0
+        0
+        55%
+        55%;
+
+    transform:
+        rotate(-2deg);
+
+    z-index: 3;
+}
+
+
+/* second wave */
+
+.top-area::before {
+    content: "";
+
+    position: absolute;
+
+    left: -10%;
+
+    bottom: -92px;
+
+    width: 120%;
+
+    height: 120px;
+
+    background:
+        #1239e8;
+
+    border-radius:
+        50%
+        50%
+        0
+        0 /
+        55%
+        55%
+        0
+        0;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-wrapper {
+    position: relative;
+
+    z-index: 10;
+
+    width: 100px;
+    height: 100px;
+
+    margin: 0 auto;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 30px
+        rgba(20,35,80,.18);
+
+    animation:
+        logoAppear
+        .8s
+        .1s
+        both;
+}
+
+.logo-wrapper img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+@keyframes logoAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.5)
+            rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+/* =========================================================
+   APP NAME
+========================================================= */
+
+.app-name {
+    position: relative;
+
+    z-index: 10;
+
+    margin-top: 13px;
+
+    color: #1d3c92;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    letter-spacing: .2px;
+
+    animation:
+        titleAppear
+        .8s
+        .25s
+        both;
+}
+
+@keyframes titleAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   BLUE CONTENT
+========================================================= */
+
+.blue-content {
+    position: relative;
+
+    min-height: 415px;
+
+    margin-top: -2px;
+
+    padding:
+        55px
+        32px
+        35px;
+
+    background:
+        linear-gradient(
+            160deg,
+            #173ee8 0%,
+            #1239e8 55%,
+            #1032d5 100%
+        );
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   CONTENT DECORATION
+========================================================= */
+
+.blue-content::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -100px;
+    top: 80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.045);
+
+    pointer-events: none;
+}
+
+.blue-content::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    left: -70px;
+    bottom: 20px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.04);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   LOGIN TITLE
+========================================================= */
+
+.login-title {
+    position: relative;
+
+    z-index: 5;
+
+    margin-bottom: 22px;
+
+    animation:
+        contentAppear
+        .8s
+        .35s
+        both;
+}
+
+.login-title h1 {
+    font-size: 25px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    color: #ffffff;
+}
+
+.login-title p {
+    margin-top: 5px;
+
+    max-width: 250px;
+
+    color:
+        rgba(255,255,255,.7);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+@keyframes contentAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   INPUT GROUP
+========================================================= */
+
+.input-group {
+    position: relative;
+
+    z-index: 5;
+
+    margin-bottom: 12px;
+
+    animation:
+        inputAppear
+        .7s
+        .45s
+        both;
+}
+
+.input-group:nth-child(2) {
+    animation-delay: .55s;
+}
+
+@keyframes inputAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-box {
+    position: relative;
+
+    width: 100%;
+}
+
+.input-box input {
+    width: 100%;
+
+    height: 54px;
+
+    padding:
+        0
+        48px
+        0
+        17px;
+
+    border:
+        1px
+        solid
+        rgba(255,255,255,.11);
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    transition:
+        background .25s,
+        border-color .25s,
+        box-shadow .25s,
+        transform .25s;
+}
+
+.input-box input::placeholder {
+    color:
+        rgba(255,255,255,.45);
+}
+
+.input-box input:focus {
+    background:
+        rgba(255,255,255,.08);
+
+    border-color:
+        rgba(255,255,255,.28);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,255,255,.07);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   INPUT ICON BOX
+========================================================= */
+
+.input-icon {
+    position: absolute;
+
+    right: 7px;
+    top: 7px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:
+        rgba(255,255,255,.75);
+
+    pointer-events: none;
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+.input-box:focus-within
+.input-icon {
+    background:
+        rgba(255,255,255,.1);
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   PASSWORD BUTTON
+========================================================= */
+
+.password-toggle {
+    position: absolute;
+
+    right: 7px;
+    top: 7px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:
+        rgba(255,255,255,.75);
+
+    cursor: pointer;
+
+    transition:
+        background .2s,
+        color .2s;
+}
+
+.password-toggle:hover {
+    background:
+        rgba(255,255,255,.1);
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   REMEMBER ME
+========================================================= */
+
+.options {
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    margin-top: 7px;
+
+    margin-bottom: 14px;
+
+    animation:
+        inputAppear
+        .7s
+        .65s
+        both;
+}
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color:
+        rgba(255,255,255,.78);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+
+/* =========================================================
+   CUSTOM CHECKBOX
+========================================================= */
+
+.remember input {
+    display: none;
+}
+
+.check {
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 4px;
+
+    background:
+        #cfff00;
+
+    color:
+        #244000;
+
+    box-shadow:
+        0 2px 7px
+        rgba(0,0,0,.1);
+
+    transition:
+        transform .2s;
+}
+
+.check::after {
+    content: "✓";
+
+    font-size: 11px;
+
+    font-weight: 900;
+}
+
+.remember input:not(:checked)
++ .check {
+    background:
+        rgba(255,255,255,.12);
+
+    box-shadow: none;
+}
+
+.remember:active .check {
+    transform:
+        scale(.85);
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-button {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d9ff00,
+            #c7f500
+        );
+
+    color:
+        #344000;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .2px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 9px 18px
+        rgba(0,0,0,.15);
+
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        filter .2s;
+
+    animation:
+        buttonAppear
+        .8s
+        .75s
+        both;
+}
+
+.login-button::before {
+    content: "";
+
+    position: absolute;
+
+    left: -100%;
+
+    top: 0;
+
+    width: 70%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.5),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left .65s;
+}
+
+.login-button:hover::before {
+    left: 140%;
+}
+
+.login-button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 13px 25px
+        rgba(0,0,0,.2);
+
+    filter:
+        brightness(1.04);
+}
+
+.login-button:active {
+    transform:
+        scale(.97);
+}
+
+.login-button.loading {
+    pointer-events: none;
+
+    opacity: .8;
+}
+
+@keyframes buttonAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader {
+    display: inline-block;
+
+    width: 18px;
+    height: 18px;
+
+    border:
+        3px
+        solid
+        rgba(52,64,0,.25);
+
+    border-top-color:
+        #344000;
+
+    border-radius: 50%;
+
+    animation:
+        spin
+        .7s
+        linear
+        infinite;
+
+    vertical-align: middle;
+}
+
+@keyframes spin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+.forgot-password {
+    position: relative;
+
+    z-index: 5;
+
+    display: block;
+
+    margin-top: 16px;
+
+    text-align: center;
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition:
+        color .2s;
+}
+
+.forgot-password:hover {
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   POPUP OVERLAY
+========================================================= */
+
+.popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(5,17,63,.58);
+
+    backdrop-filter:
+        blur(9px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s,
+        visibility .3s;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================================
+   POPUP
+========================================================= */
+
+.popup {
+    width:
+        min(
+            370px,
+            90vw
+        );
+
+    padding:
+        32px
+        26px;
+
+    border-radius: 28px;
+
+    background:
+        #ffffff;
+
+    text-align: center;
+
+    box-shadow:
+        0 35px 80px
+        rgba(0,0,0,.3);
+
+    transform:
+        translateY(35px)
+        scale(.85);
+
+    transition:
+        transform
+        .45s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+.popup-overlay.active
+.popup {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   POPUP ICON
+========================================================= */
+
+.popup-icon {
+    width: 74px;
+    height: 74px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    animation:
+        popupIcon
+        .5s
+        .1s
+        both;
+}
+
+.popup.success
+.popup-icon {
+    background:
+        #efffc5;
+
+    color:
+        #5c7600;
+}
+
+.popup.error
+.popup-icon {
+    background:
+        #ffe7e7;
+
+    color:
+        #df3f3f;
+}
+
+@keyframes popupIcon {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotate(-30deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+/* =========================================================
+   POPUP CHECKMARK
+========================================================= */
+
+.checkmark {
+    width: 27px;
+    height: 15px;
+
+    border-left:
+        4px
+        solid
+        currentColor;
+
+    border-bottom:
+        4px
+        solid
+        currentColor;
+
+    transform:
+        rotate(-45deg)
+        scale(0);
+
+    animation:
+        checkmark
+        .45s
+        .3s
+        forwards;
+}
+
+@keyframes checkmark {
+
+    to {
+        transform:
+            rotate(-45deg)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   POPUP TEXT
+========================================================= */
+
+.popup h2 {
+    margin-top: 19px;
+
+    color:
+        #17235c;
+
+    font-size: 21px;
+
+    font-weight: 800;
+}
+
+.popup p {
+    margin-top: 8px;
+
+    color:
+        #8d8f9a;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   POPUP BUTTON
+========================================================= */
+
+.popup-close {
+    width: 100%;
+
+    height: 48px;
+
+    margin-top: 22px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        #173ee8;
+
+    color:
+        #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.popup-close:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(23,62,232,.25);
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLET
+========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        min-height: 100svh;
+    }
+
+    .login-wrapper {
+        width: 100%;
+
+        padding: 10px;
+    }
+
+    .login-card {
+        border-radius: 35px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .login-card {
+        min-height: 680px;
+
+        border-radius: 32px;
+    }
+
+    .top-area {
+        height: 275px;
+
+        padding-top: 35px;
+    }
+
+    .logo-wrapper {
+        width: 92px;
+        height: 92px;
+
+        border-radius: 25px;
+    }
+
+    .app-name {
+        font-size: 19px;
+    }
+
+    .blue-content {
+        min-height: 405px;
+
+        padding:
+            54px
+            27px
+            30px;
+    }
+
+    .login-title h1 {
+        font-size: 24px;
+    }
+
+    .input-box input {
+        height: 53px;
+    }
+
+    .login-button {
+        height: 54px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .login-wrapper {
+        padding: 7px;
+    }
+
+    .login-card {
+        min-height: 630px;
+
+        border-radius: 29px;
+    }
+
+    .top-area {
+        height: 250px;
+    }
+
+    .logo-wrapper {
+        width: 82px;
+        height: 82px;
+    }
+
+    .app-name {
+        font-size: 18px;
+    }
+
+    .blue-content {
+        padding:
+            50px
+            23px
+            25px;
+    }
+
+    .login-title {
+        margin-bottom: 17px;
+    }
+
+    .login-title h1 {
+        font-size: 22px;
+    }
+
+    .login-title p {
+        font-size: 10px;
+    }
+
+    .input-box input {
+        height: 50px;
+
+        font-size: 11px;
+    }
+
+    .input-icon,
+    .password-toggle {
+        width: 37px;
+        height: 37px;
+    }
+
+    .login-button {
+        height: 51px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button,
+input {
+    font-family: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline:
+        3px solid
+        rgba(207,255,0,.35);
+
+    outline-offset: 2px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="bg-shape"></div>
+
+    <div class="bg-shape"></div>
+
+    <div class="bg-shape"></div>
+
+    <div class="bg-shape"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     LOGIN CARD
+===================================================== -->
+
+<main class="login-wrapper">
+
+    <section class="login-card">
+
+
+        <!-- =================================================
+             TOP AREA
+        ================================================== -->
+
+        <div class="top-area">
+
+
+            <!-- LOGO -->
+
+            <div class="logo-wrapper">
+
+                <img
+                    src="https://yanuar-moga.github.io/assets/logo.jpg"
+                    alt="Logo MB"
+                    loading="eager">
+
+            </div>
+
+
+            <!-- APP NAME -->
+
+            <div class="app-name">
+                MB
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             BLUE LOGIN AREA
+        ================================================== -->
+
+        <div class="blue-content">
+
+
+            <!-- TITLE -->
+
+            <div class="login-title">
+
+                <h1>
+                    Login
+                </h1>
+
+                <p>
+                    Enter your login and password<br>
+                    to sign in to the app
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form
+                id="loginForm"
+                autocomplete="on">
+
+
+                <!-- USERNAME -->
+
+                <div class="input-group">
+
+                    <div class="input-box">
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required>
+
+
+                        <span class="input-icon">
+
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none">
+
+                                <circle
+                                    cx="12"
+                                    cy="8"
+                                    r="3.5"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                                <path
+                                    d="M5 20C5.8 16.5 8.1 15 12 15C15.9 15 18.2 16.5 19 20"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"/>
+
+                            </svg>
+
+                        </span>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <div class="input-box">
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword"
+                            aria-label="Show password">
+
+
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none">
+
+                                <path
+                                    d="M2.5 12C4.5 7.8 8 5.5 12 5.5C16 5.5 19.5 7.8 21.5 12C19.5 16.2 16 18.5 12 18.5C8 18.5 4.5 16.2 2.5 12Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="3"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"/>
+
+                            </svg>
+
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     REMEMBER ME
+                ================================================== -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                            checked>
+
+                        <span class="check"></span>
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOGIN BUTTON
+                ================================================== -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton">
+
+                    <span id="loginText">
+                        Login
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- =================================================
+                 FORGOT PASSWORD
+            ================================================== -->
+
+            <span
+                class="forgot-password"
+                id="forgotPassword">
+
+                Forgot password?
+
+            </span>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     POPUP
+===================================================== -->
+
+<div
+    class="popup-overlay"
+    id="popupOverlay">
+
+
+    <div
+        class="popup"
+        id="popup">
+
+
+        <!-- ICON -->
+
+        <div
+            class="popup-icon"
+            id="popupIcon">
+
+            <div class="checkmark"></div>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h2 id="popupTitle">
+            Login Successful
+        </h2>
+
+
+        <!-- MESSAGE -->
+
+        <p id="popupMessage">
+            Selamat datang kembali.
+        </p>
+
+
+        <!-- BUTTON -->
+
+        <button
+            type="button"
+            class="popup-close"
+            id="popupClose">
+
+            Continue
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+const username =
+    document.getElementById(
+        "username"
+    );
+
+const password =
+    document.getElementById(
+        "password"
+    );
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+const loginText =
+    document.getElementById(
+        "loginText"
+    );
+
+const togglePassword =
+    document.getElementById(
+        "togglePassword"
+    );
+
+const popupOverlay =
+    document.getElementById(
+        "popupOverlay"
+    );
+
+const popup =
+    document.getElementById(
+        "popup"
+    );
+
+const popupIcon =
+    document.getElementById(
+        "popupIcon"
+    );
+
+const popupTitle =
+    document.getElementById(
+        "popupTitle"
+    );
+
+const popupMessage =
+    document.getElementById(
+        "popupMessage"
+    );
+
+const popupClose =
+    document.getElementById(
+        "popupClose"
+    );
+
+const forgotPassword =
+    document.getElementById(
+        "forgotPassword"
+    );
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+togglePassword.addEventListener(
+    "click",
+    function () {
+
+        if (
+            password.type ===
+            "password"
+        ) {
+
+            password.type =
+                "text";
+
+        } else {
+
+            password.type =
+                "password";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+loginForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const user =
+            username.value.trim();
+
+        const pass =
+            password.value.trim();
+
+
+        /* USERNAME */
+
+        if (!user) {
+
+            showPopup(
+                "error",
+                "Username Required",
+                "Please enter your username first."
+            );
+
+            username.focus();
+
+            return;
+        }
+
+
+        /* PASSWORD */
+
+        if (!pass) {
+
+            showPopup(
+                "error",
+                "Password Required",
+                "Please enter your password first."
+            );
+
+            password.focus();
+
+            return;
+        }
+
+
+        /* =================================================
+           SAVE REMEMBER ME
+        ================================================== */
+
+        const rememberMe =
+            document.getElementById(
+                "rememberMe"
+            ).checked;
+
+        if (rememberMe) {
+
+            localStorage.setItem(
+                "mb_username",
+                user
+            );
+
+        } else {
+
+            localStorage.removeItem(
+                "mb_username"
+            );
+
+        }
+
+
+        /* =================================================
+           LOADING
+        ================================================== */
+
+        loginButton.classList.add(
+            "loading"
+        );
+
+        loginButton.disabled =
+            true;
+
+        loginText.innerHTML =
+            '<span class="loader"></span>';
+
+
+        /* =================================================
+           SIMULATION
+           
+           NANTI BAGIAN INI BISA
+           DIGANTI API / GAS
+        ================================================== */
+
+        setTimeout(
+            function () {
+
+
+                loginButton.classList.remove(
+                    "loading"
+                );
+
+                loginButton.disabled =
+                    false;
+
+                loginText.innerText =
+                    "Login";
+
+
+                showPopup(
+                    "success",
+                    "Login Successful",
+                    "Welcome back, " +
+                    user +
+                    "! You have successfully signed in."
+                );
+
+
+            },
+            1300
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SHOW POPUP
+========================================================= */
+
+function showPopup(
+    type,
+    title,
+    message
+) {
+
+    popup.classList.remove(
+        "success",
+        "error"
+    );
+
+    popup.classList.add(
+        type
+    );
+
+
+    popupTitle.innerText =
+        title;
+
+    popupMessage.innerText =
+        message;
+
+
+    /* SUCCESS */
+
+    if (
+        type ===
+        "success"
+    ) {
+
+        popupIcon.innerHTML =
+
+            `
+            <div class="checkmark"></div>
+            `;
+
+    }
+
+
+    /* ERROR */
+
+    else {
+
+        popupIcon.innerHTML =
+
+            `
+            <svg
+                width="34"
+                height="34"
+                viewBox="0 0 24 24"
+                fill="none">
+
+                <path
+                    d="M6 6L18 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+                <path
+                    d="M18 6L6 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+            </svg>
+            `;
+
+    }
+
+
+    popupOverlay.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE POPUP
+========================================================= */
+
+function closePopup() {
+
+    popupOverlay.classList.remove(
+        "active"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+popupClose.addEventListener(
+    "click",
+    closePopup
+);
+
+
+/* =========================================================
+   CLICK OUTSIDE POPUP
+========================================================= */
+
+popupOverlay.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            popupOverlay
+        ) {
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+forgotPassword.addEventListener(
+    "click",
+    function () {
+
+        showPopup(
+            "success",
+            "Forgot Password",
+            "Password reset functionality can be connected to your authentication system."
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LOAD SAVED USERNAME
+========================================================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const savedUsername =
+            localStorage.getItem(
+                "mb_username"
+            );
+
+        if (
+            savedUsername
+        ) {
+
+            username.value =
+                savedUsername;
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
