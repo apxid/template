@@ -16,7 +16,7 @@
 }
 
 body {
-    background-color: #121212;
+    background-color: #0d1117;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -30,43 +30,22 @@ body {
 .app-container {
     width: 100%;
     max-width: 380px;
-    height: 720px;
+    height: 700px;
     background-color: #0b44ee;
-    border-radius: 40px;
+    border-radius: 44px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
 }
 
-/* STATUS BAR MOCKUP */
-.status-bar {
-    height: 40px;
-    background-color: #f3f3f7;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #000;
-    z-index: 10;
-}
-
-.notch {
-    width: 90px;
-    height: 22px;
-    background-color: #000;
-    border-radius: 12px;
-}
-
 /* =========================================================
-   TOP SECTION (WHITE)
+   TOP SECTION (WHITE BACKGROUND)
 ========================================================= */
 .top-section {
     background-color: #f3f3f7;
-    padding-top: 20px;
+    padding-top: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,15 +53,15 @@ body {
 }
 
 .logo-container {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 26px;
+    border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(11, 68, 238, 0.15);
+    box-shadow: 0 12px 28px rgba(11, 68, 238, 0.12);
 }
 
 .logo-container img {
@@ -93,50 +72,55 @@ body {
 
 .app-title {
     color: #1b2559;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
-    margin-top: 12px;
-    letter-spacing: 0.3px;
+    margin-top: 14px;
+    letter-spacing: 0.2px;
 }
 
-/* WAVE SVG SEPARATION */
+/* =========================================================
+   EXACT WAVE TRANSITION (MATCHING IMAGE)
+========================================================= */
 .wave-container {
     width: 100%;
     line-height: 0;
     background-color: #f3f3f7;
+    margin-bottom: -1px; /* Prevents tiny gap line */
 }
 
 .wave-container svg {
     width: 100%;
-    height: 60px;
+    height: 75px;
+    display: block;
 }
 
 /* =========================================================
-   BOTTOM SECTION (BLUE FORM)
+   BOTTOM SECTION (BLUE FORM AREA)
 ========================================================= */
 .form-section {
     background-color: #0b44ee;
     flex: 1;
-    padding: 10px 32px 30px 32px;
+    padding: 15px 32px 35px 32px;
     display: flex;
     flex-direction: column;
 }
 
 .login-header h1 {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
     color: #ffffff;
     margin-bottom: 6px;
+    letter-spacing: -0.5px;
 }
 
 .login-header p {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.4;
-    margin-bottom: 25px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.45;
+    margin-bottom: 26px;
 }
 
-/* INPUT GROUPS */
+/* INPUT FIELDS */
 .input-group {
     position: relative;
     margin-bottom: 14px;
@@ -144,13 +128,13 @@ body {
 
 .input-box {
     width: 100%;
-    height: 52px;
+    height: 54px;
     background-color: #0a3cd4;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
-    padding: 0 50px 0 18px;
+    padding: 0 52px 0 20px;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 14px;
     outline: none;
     transition: all 0.2s ease;
 }
@@ -167,12 +151,12 @@ body {
 .input-icon-btn {
     position: absolute;
     right: 8px;
-    top: 6px;
+    top: 7px;
     width: 40px;
     height: 40px;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.65);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -183,15 +167,15 @@ body {
 .options-row {
     display: flex;
     align-items: center;
-    margin: 10px 0 24px 0;
+    margin: 12px 0 26px 0;
 }
 
 .remember-label {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.95);
     cursor: pointer;
     user-select: none;
 }
@@ -228,7 +212,7 @@ body {
 /* LOGIN BUTTON */
 .btn-login {
     width: 100%;
-    height: 52px;
+    height: 54px;
     background-color: #ccff00;
     border: none;
     border-radius: 16px;
@@ -298,16 +282,6 @@ body {
 <body>
 
 <div class="app-container">
-    <!-- STATUS BAR -->
-    <div class="status-bar">
-        <span>4:33</span>
-        <div class="notch"></div>
-        <div style="display:flex; gap: 4px; align-items: center;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.64-.62C9.53 20.74 10.73 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17 7H7c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z"/></svg>
-        </div>
-    </div>
-
     <!-- TOP SECTION (LOGO & TITLE) -->
     <div class="top-section">
         <div class="logo-container">
@@ -316,10 +290,10 @@ body {
         <div class="app-title">Kosmo</div>
     </div>
 
-    <!-- TRANSITION WAVE -->
+    <!-- TRANSITION WAVE (ACCURATE TO DESIGN) -->
     <div class="wave-container">
-        <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-            <path d="M0,30 C150,90 350,-30 500,40 L500,150 L0,150 Z" fill="#0b44ee"></path>
+        <svg viewBox="0 0 500 120" preserveAspectRatio="none">
+            <path d="M 0,35 C 150,110 320,-15 500,65 L 500,120 L 0,120 Z" fill="#0b44ee"></path>
         </svg>
     </div>
 
