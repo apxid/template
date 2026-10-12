@@ -1,0 +1,10 @@
+{
+  "name": "kompint",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Media pembelajaran interaktif Pertemuan 1 Sistem Komputer",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node -e \"require('fs').accessSync('index.html')\""
+  }
+}
